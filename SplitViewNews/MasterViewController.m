@@ -8,13 +8,47 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "NewsTableViewCell.h"
 
 @interface MasterViewController ()
 
 @property NSMutableArray *objects;
+
 @end
 
 @implementation MasterViewController
+
+- (void)refreshTable {
+    NSLog(@"Refreshing");
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
+
+- (void)loadData {
+    // Google News API url
+    NSString *url = @"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss";
+
+    // Create NSUrlSession
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    // Create data download tasks
+    [[session dataTaskWithURL:[NSURL URLWithString:url]
+            completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
+                
+                NSError *jsonError;
+                self.objects = [NSJSONSerialization JSONObjectWithData:data
+                                                                 options:NSJSONReadingAllowFragments
+                                                                   error:&jsonError];
+                // Log the data for debugging
+                NSLog(@"DownloadedData:%@",self.objects);
+                
+                // Use dispatch_async to update the table on the main thread
+                // Remember that NSURLSession is downloading in the background
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
+            }] resume];
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -29,8 +63,17 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    [self loadData];
+    
+    self.objects = [[NSMutableArray alloc] init];
+    
+    // Add UIRefreshControl
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+    
+    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
@@ -72,16 +115,24 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArticleCell" forIndexPath:indexPath];
 
-    NSDate *object = self.objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    // Configure cell here!
+    
+    //cell.articleTitle.text = [[self.objects objectAtIndex:indexPath.row] valueForKeyPath:@"responseData.feed.description"];
+    //cell.articleTitle.text = [[self.objects objectAtIndex:indexPath.row] valueForKeyPath:@"responseData.feed.entries.title"];
+    //cell.publishDate.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"publishedDate"];
+    // note: need to use NSDateFormatter to display only day, month, and year
+    //cell.articleSnippet.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"contentSnippet"];
+    
+    //NSDate *object = self.objects[indexPath.row];
+    //cell.textLabel.text = [object description];
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

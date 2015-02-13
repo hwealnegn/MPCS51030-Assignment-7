@@ -7,8 +7,10 @@
 //
 
 #import "DetailViewController.h"
+#import "BookmarkViewController.h"
+#import "BookmarkToWebViewDelegate.h"
 
-@interface DetailViewController ()
+@interface DetailViewController () <BookmarkToWebViewDelegate>
 
 @end
 
@@ -41,6 +43,20 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"popoverSegue"]) {
+        NSLog(@"Prepare for segue");
+        BookmarkViewController *bvc = (BookmarkViewController*)segue.destinationViewController;
+        bvc.delegate = self;
+    }
+}
+
+- (void)bookmark:(id)sender sendsURL:(NSURL *)url {
+    NSLog(@"Sending message from bookmarks");
+    // create webview property first!
+    //[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 @end

@@ -15,6 +15,8 @@
 		3B0259EB1A8EA2A3009C6EA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B0259EA1A8EA2A3009C6EA4 /* Images.xcassets */; };
 		3B0259EE1A8EA2A3009C6EA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0259EC1A8EA2A3009C6EA4 /* LaunchScreen.xib */; };
 		3B0259FA1A8EA2A3009C6EA4 /* SplitViewNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0259F91A8EA2A3009C6EA4 /* SplitViewNewsTests.m */; };
+		3B025A051A8EA574009C6EA4 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B025A041A8EA574009C6EA4 /* NewsTableViewCell.m */; };
+		3B025A091A8EC2CE009C6EA4 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B025A081A8EC2CE009C6EA4 /* BookmarkViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,11 @@
 		3B0259F31A8EA2A3009C6EA4 /* SplitViewNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitViewNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0259F81A8EA2A3009C6EA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B0259F91A8EA2A3009C6EA4 /* SplitViewNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SplitViewNewsTests.m; sourceTree = "<group>"; };
+		3B025A031A8EA574009C6EA4 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
+		3B025A041A8EA574009C6EA4 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
+		3B025A061A8EC01F009C6EA4 /* BookmarkToWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkToWebViewDelegate.h; sourceTree = "<group>"; };
+		3B025A071A8EC2CE009C6EA4 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
+		3B025A081A8EC2CE009C6EA4 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +95,14 @@
 				3B0259DF1A8EA2A3009C6EA4 /* AppDelegate.m */,
 				3B0259E11A8EA2A3009C6EA4 /* MasterViewController.h */,
 				3B0259E21A8EA2A3009C6EA4 /* MasterViewController.m */,
+				3B025A031A8EA574009C6EA4 /* NewsTableViewCell.h */,
+				3B025A041A8EA574009C6EA4 /* NewsTableViewCell.m */,
 				3B0259E41A8EA2A3009C6EA4 /* DetailViewController.h */,
 				3B0259E51A8EA2A3009C6EA4 /* DetailViewController.m */,
+				3B025A061A8EC01F009C6EA4 /* BookmarkToWebViewDelegate.h */,
 				3B0259E71A8EA2A3009C6EA4 /* Main.storyboard */,
+				3B025A071A8EC2CE009C6EA4 /* BookmarkViewController.h */,
+				3B025A081A8EC2CE009C6EA4 /* BookmarkViewController.m */,
 				3B0259EA1A8EA2A3009C6EA4 /* Images.xcassets */,
 				3B0259EC1A8EA2A3009C6EA4 /* LaunchScreen.xib */,
 				3B0259DA1A8EA2A3009C6EA4 /* Supporting Files */,
@@ -225,6 +237,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B0259E01A8EA2A3009C6EA4 /* AppDelegate.m in Sources */,
+				3B025A051A8EA574009C6EA4 /* NewsTableViewCell.m in Sources */,
+				3B025A091A8EC2CE009C6EA4 /* BookmarkViewController.m in Sources */,
 				3B0259E31A8EA2A3009C6EA4 /* MasterViewController.m in Sources */,
 				3B0259DD1A8EA2A3009C6EA4 /* main.m in Sources */,
 				3B0259E61A8EA2A3009C6EA4 /* DetailViewController.m in Sources */,
@@ -354,6 +368,7 @@
 				INFOPLIST_FILE = SplitViewNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -364,6 +379,7 @@
 				INFOPLIST_FILE = SplitViewNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
