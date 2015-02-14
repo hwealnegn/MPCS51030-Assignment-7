@@ -129,8 +129,20 @@
     // Configure cell here!
     
     cell.articleTitle.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.publishDate.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"publishedDate"];
-    // note: need to use NSDateFormatter to display only day, month, and year
+    
+    // Used NSDateFormatter to display only day, month, and year
+    // References: http://iosdevelopertips.com/cocoa/date-formatters-examples-take-3.html & http://nshipster.com/nsformatter/
+    NSString *date = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"publishedDate"];
+    NSString *subDate = [date substringWithRange:NSMakeRange(5, 11)];
+    NSDateFormatter *DateFormatted = [[NSDateFormatter alloc] init];
+    [DateFormatted setDateFormat:@"dd MMM yyyy"];
+    NSDate *articleDate = [DateFormatted dateFromString:subDate]; // date string
+    
+    [DateFormatted setDateStyle:NSDateFormatterMediumStyle];
+    NSString *modifiedDate = [DateFormatted stringFromDate:articleDate];
+    
+    cell.publishDate.text = modifiedDate;
+    
     cell.articleSnippet.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"contentSnippet"];
     
     return cell;
