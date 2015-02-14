@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "NewsTableViewCell.h"
+#import "SharedNetworking.h"
 
 @interface MasterViewController ()
 
@@ -24,7 +25,7 @@
     [self.refreshControl endRefreshing];
 }
 
-- (void)loadData {
+/*- (void)loadData {
     // Google News API url
     NSString *url = @"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss";
 
@@ -48,7 +49,7 @@
                     [self.tableView reloadData];
                 });
             }] resume];
-}
+}*/
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -63,7 +64,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    [self loadData];
+    //[self loadData];
     
     self.objects = [[NSMutableArray alloc] init];
     
@@ -75,6 +76,14 @@
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    [[SharedNetworking sharedNetworking] getFeedForURL:@"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss"
+                                               success:^(NSDictionary *dictionary, NSError *error) {
+                                                   self.objects = dictionary[@"responseData"][@"feed"][@"entries"];
+                                                   [self.tableView reloadData];
+                                               } failure:^{
+                                                       NSLog(@"Problem with data");
+                                               }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,14 +128,11 @@
 
     // Configure cell here!
     
-    //cell.articleTitle.text = [[self.objects objectAtIndex:indexPath.row] valueForKeyPath:@"responseData.feed.description"];
-    //cell.articleTitle.text = [[self.objects objectAtIndex:indexPath.row] valueForKeyPath:@"responseData.feed.entries.title"];
-    //cell.publishDate.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"publishedDate"];
+    cell.articleTitle.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.publishDate.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"publishedDate"];
     // note: need to use NSDateFormatter to display only day, month, and year
-    //cell.articleSnippet.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"contentSnippet"];
+    cell.articleSnippet.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"contentSnippet"];
     
-    //NSDate *object = self.objects[indexPath.row];
-    //cell.textLabel.text = [object description];
     return cell;
 }
 

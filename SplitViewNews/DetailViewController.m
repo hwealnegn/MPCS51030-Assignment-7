@@ -56,6 +56,7 @@
 - (void)bookmark:(id)sender sendsURL:(NSURL *)url {
     NSLog(@"Sending message from bookmarks");
     // create webview property first!
+    // note: still need to call delegate method (see slides)
     //[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
