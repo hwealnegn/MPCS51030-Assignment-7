@@ -25,32 +25,6 @@
     [self.refreshControl endRefreshing];
 }
 
-/*- (void)loadData {
-    // Google News API url
-    NSString *url = @"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss";
-
-    // Create NSUrlSession
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    // Create data download tasks
-    [[session dataTaskWithURL:[NSURL URLWithString:url]
-            completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-                
-                NSError *jsonError;
-                self.objects = [NSJSONSerialization JSONObjectWithData:data
-                                                                 options:NSJSONReadingAllowFragments
-                                                                   error:&jsonError];
-                // Log the data for debugging
-                NSLog(@"DownloadedData:%@",self.objects);
-                
-                // Use dispatch_async to update the table on the main thread
-                // Remember that NSURLSession is downloading in the background
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                });
-            }] resume];
-}*/
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
