@@ -18,19 +18,23 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem {
+- (void)setDetailItem:(NSDictionary *)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
             
         // Update the view.
         [self configureView];
+        NSLog(@"Setter override");
     }
 }
 
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+        //self.detailDescriptionLabel.text = [self.detailItem description];
+        self.detailDescriptionLabel.text = self.detailItem[@"title"];
+        NSURL *url = [NSURL URLWithString:self.detailItem[@"link"]];
+        [self.articleWebView loadRequest:[NSURLRequest requestWithURL:url]];
     }
 }
 
@@ -39,8 +43,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
     
-    // Initialize UIWebView (had to change to strong property?)
-    [self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
+    // Test UIWebView display
+    //[self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
 }
 
 - (void)didReceiveMemoryWarning {
