@@ -106,8 +106,8 @@
 				3B025A0B1A8EC6FA009C6EA4 /* SharedNetworking.m */,
 				3B025A061A8EC01F009C6EA4 /* BookmarkToWebViewDelegate.h */,
 				3B0259E71A8EA2A3009C6EA4 /* Main.storyboard */,
-				3B025A071A8EC2CE009C6EA4 /* BookmarkViewController.h */,
 				3B025A081A8EC2CE009C6EA4 /* BookmarkViewController.m */,
+				3B025A071A8EC2CE009C6EA4 /* BookmarkViewController.h */,
 				3B0259EA1A8EA2A3009C6EA4 /* Images.xcassets */,
 				3B0259EC1A8EA2A3009C6EA4 /* LaunchScreen.xib */,
 				3B0259DA1A8EA2A3009C6EA4 /* Supporting Files */,
@@ -442,6 +442,7 @@
 				3B0259FF1A8EA2A3009C6EA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B025A001A8EA2A3009C6EA4 /* Build configuration list for PBXNativeTarget "SplitViewNewsTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +451,7 @@
 				3B025A021A8EA2A3009C6EA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

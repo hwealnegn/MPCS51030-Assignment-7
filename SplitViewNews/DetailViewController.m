@@ -38,6 +38,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+    // Initialize UIWebView (had to change to strong property?)
+    [self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,9 +58,11 @@
 
 - (void)bookmark:(id)sender sendsURL:(NSURL *)url {
     NSLog(@"Sending message from bookmarks");
-    // create webview property first!
-    // note: still need to call delegate method (see slides)
-    //[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    [self.articleWebView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
+- (IBAction)favoriteArticle:(id)sender {
+    NSLog(@"Favorited article!");
+    // Save relevant article information to NSUserDefaults
+}
 @end

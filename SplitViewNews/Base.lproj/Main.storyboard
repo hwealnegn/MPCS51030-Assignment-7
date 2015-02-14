@@ -39,11 +39,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="enB-Ou-cl2">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vu2-aP-07O">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ywu-xZ-WGX"/>
-                                    <barButtonItem title="Favorite This Article" id="Rrm-uZ-t3R"/>
+                                    <barButtonItem title="Favorite This Article" id="Rrm-uZ-t3R">
+                                        <connections>
+                                            <action selector="favoriteArticle:" destination="JEX-9P-axG" id="H72-Y6-0V0"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dZE-yg-5tf"/>
                                 </items>
                             </toolbar>
@@ -51,8 +59,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="vu2-aP-07O" secondAttribute="trailing" constant="-16" id="9dt-sB-fJ1"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="enB-Ou-cl2" secondAttribute="bottom" id="Gra-Gj-Xed"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="enB-Ou-cl2" secondAttribute="trailing" constant="-16" id="N4a-5c-fSY"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="vu2-aP-07O" secondAttribute="bottom" id="cMf-iR-1ah"/>
+                            <constraint firstItem="enB-Ou-cl2" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="ds6-AQ-0N0"/>
+                            <constraint firstItem="enB-Ou-cl2" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="f2l-bz-H20"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
                             <constraint firstItem="vu2-aP-07O" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="rsu-fu-L1d"/>
                             <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
@@ -62,13 +74,14 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="W7r-Gm-j7T">
                             <connections>
-                                <segue destination="LKt-Jw-30E" kind="popoverPresentation" popoverAnchorBarButtonItem="W7r-Gm-j7T" id="FzY-PZ-nTE">
+                                <segue destination="LKt-Jw-30E" kind="popoverPresentation" identifier="" popoverAnchorBarButtonItem="W7r-Gm-j7T" id="FzY-PZ-nTE">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="articleWebView" destination="enB-Ou-cl2" id="eiq-HW-9xS"/>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
                     </connections>
                 </viewController>
@@ -156,7 +169,7 @@
                                     <outlet property="articleSnippet" destination="n4j-97-aAQ" id="NMv-3T-MyX"/>
                                     <outlet property="articleTitle" destination="86z-Sd-VSw" id="U9I-Qw-5mi"/>
                                     <outlet property="publishDate" destination="3a2-JJ-0ga" id="6cx-ly-a0V"/>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
+                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="TCg-k4-3FC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -189,6 +202,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
+        <segue reference="TCg-k4-3FC"/>
     </inferredMetricsTieBreakers>
 </document>
