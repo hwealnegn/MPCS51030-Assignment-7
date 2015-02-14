@@ -20,12 +20,6 @@
     return shared;
 }
 
-/*- (id)init {
-    if (self = [super init]) {
-        return self;
-    }
-}*/
-
 - (void)getFeedForURL:(NSString*)url
               success:(void (^)(NSDictionary *dictionary, NSError *error))successCompletion
               failure:(void (^)(void))failureCompletion {
