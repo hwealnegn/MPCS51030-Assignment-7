@@ -55,8 +55,17 @@
                                                success:^(NSDictionary *dictionary, NSError *error) {
                                                    self.objects = dictionary[@"responseData"][@"feed"][@"entries"];
                                                    [self.tableView reloadData];
+                                                   
+                                                   // Indicate network activity
+                                                   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                                                   
                                                } failure:^{
                                                        NSLog(@"Problem with data");
+                                                   
+                                                   // No network activity (not sure if works)
+                                                   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to connect to network." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                    [alert show];
                                                }];
 }
 

@@ -68,6 +68,15 @@
 - (IBAction)favoriteArticle:(id)sender {
     NSLog(@"Favorited article!");
 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    
+    tempArray = [defaults objectForKey:@"title"]; // retrieve previously stored articles
+    [tempArray addObject:self.detailItem[@"title"]]; // add new article
+    [defaults setObject:tempArray forKey:@"title"]; // save updated array to defaults
+    [defaults synchronize];
+    
 /*    // Save relevant article information to NSUserDefaults (dictionary)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // where should this be initialized?
     
