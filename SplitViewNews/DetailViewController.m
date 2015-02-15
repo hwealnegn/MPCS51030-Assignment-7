@@ -70,7 +70,8 @@
     
     // Save article titles
     if ([defaults objectForKey:@"title"] != nil) {
-        NSMutableArray *tempArray = [[NSMutableArray alloc] init]; // create temp mutable array
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        //NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[defaults objectForKey:@"title"]]; // create temp mutable array
         [tempArray addObject:[defaults objectForKey:@"title"]]; // add existing objects to array
         
         // check if selected article is already in array
@@ -83,6 +84,9 @@
             [defaults setObject:tempArray forKey:@"title"]; // save updated array to defaults
         }
     } else {
+        //[defaults arrayForKey:@"title"];
+        //NSMutableArray *tempArray = [[NSMutableArray alloc] init]; // create temp mutable array
+        //[tempArray addObject:self.detailItem[@"title"]]; // add existing objects to array
         [defaults setObject:self.detailItem[@"title"] forKey:@"title"]; // initialize with first input
     }
     
