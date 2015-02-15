@@ -62,7 +62,7 @@
                                                } failure:^{
                                                        NSLog(@"Problem with data");
                                                    
-                                                   // No network activity (not sure if works)
+                                                   // No network activity (doesn't work)
                                                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to connect to network." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                     [alert show];

@@ -34,9 +34,4 @@
 }
 */
 
-- (IBAction)tabLoadURL:(UIButton *)sender {
-    [self.delegate bookmark:self sendsURL:[NSURL URLWithString:@"http://www.google.com"]];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
 @end

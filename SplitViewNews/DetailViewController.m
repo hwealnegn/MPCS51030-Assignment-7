@@ -68,13 +68,26 @@
 - (IBAction)favoriteArticle:(id)sender {
     NSLog(@"Favorited article!");
 
+    // Save relevant article information to NSUserDefaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    if ([defaults objectForKey:@"title"] != nil) {
+        NSArray *copyArray = [defaults objectForKey:@"title"]; // create copy of existing array
+        NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:copyArray]; // create temp mutable array
+        
+        // check if selected article is already in array
+        for (NSString *article in tempArray){
+            if (article == self.detailItem[@"title"]) { // article already saved
+                break;
+            }
+            // if article is not found
+            [tempArray addObject:self.detailItem[@"title"]]; // add new article
+            [defaults setObject:tempArray forKey:@"title"]; // save updated array to defaults
+        }
+    } else {
+        [defaults setObject:self.detailItem[@"title"] forKey:@"title"]; // initialize with first input
+    }
     
-    tempArray = [defaults objectForKey:@"title"]; // retrieve previously stored articles
-    [tempArray addObject:self.detailItem[@"title"]]; // add new article
-    [defaults setObject:tempArray forKey:@"title"]; // save updated array to defaults
     [defaults synchronize];
     
 /*    // Save relevant article information to NSUserDefaults (dictionary)
