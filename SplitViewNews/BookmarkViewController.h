@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BookmarkToWebViewDelegate.h"
 
-@interface BookmarkViewController : UIViewController
+@interface BookmarkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) id<BookmarkToWebViewDelegate> delegate;
+
+@property (strong, nonatomic) NSMutableArray *favoriteTitle;
 
 @end

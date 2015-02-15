@@ -42,9 +42,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
-    
-    // Test UIWebView display
-    //[self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,24 +107,5 @@
     [defaults synchronize];
     
     NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-    
-/*    // Save relevant article information to NSUserDefaults (dictionary)
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // where should this be initialized?
-    
-    // should be array/dictionary? to store all articles in?
-    //[defaults setObject:self.detailItem[@"title"] forKey:@"title"];
-    [defaults setObject:self.detailItem[@"link"] forKey:@"link"];
-    [defaults synchronize];
-
-    // Copy current contents of array into temporary array
-    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-    tempArray = [defaults objectForKey:@"title"];
-    [tempArray addObject:self.detailItem[@"title"]];
-    [defaults setObject:tempArray forKey:@"title"];
-    [defaults synchronize];
-
-    
-    NSLog(@"NSUserDefaults: %@", [defaults objectForKey:@"title"]);
-    */
 }
 @end

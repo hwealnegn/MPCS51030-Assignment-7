@@ -91,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
         </scene>
-        <!--View Controller-->
+        <!--Bookmark View Controller-->
         <scene sceneID="xC3-mL-vow">
             <objects>
-                <viewController id="LKt-Jw-30E" sceneMemberID="viewController">
+                <viewController id="LKt-Jw-30E" customClass="BookmarkViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="smx-O8-Ggv"/>
                         <viewControllerLayoutGuide type="bottom" id="so5-V8-gUz"/>
@@ -122,6 +122,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="LKt-Jw-30E" id="7Cu-vD-7Bx"/>
+                                    <outlet property="delegate" destination="LKt-Jw-30E" id="Hxk-4J-aNj"/>
+                                </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LcS-8Z-CZn">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
@@ -148,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJk-vp-alQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1435" y="129"/>
+            <point key="canvasLocation" x="1471" y="129"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
