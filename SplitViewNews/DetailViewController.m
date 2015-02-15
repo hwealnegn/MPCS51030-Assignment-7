@@ -71,9 +71,10 @@
     // Save relevant article information to NSUserDefaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    // Save article titles
     if ([defaults objectForKey:@"title"] != nil) {
-        NSArray *copyArray = [defaults objectForKey:@"title"]; // create copy of existing array
-        NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:copyArray]; // create temp mutable array
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init]; // create temp mutable array
+        [tempArray addObject:[defaults objectForKey:@"title"]]; // add existing objects to array
         
         // check if selected article is already in array
         for (NSString *article in tempArray){
@@ -88,7 +89,27 @@
         [defaults setObject:self.detailItem[@"title"] forKey:@"title"]; // initialize with first input
     }
     
+    // Save article links
+    if ([defaults objectForKey:@"link"] != nil) {
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init]; // create temp mutable array
+        [tempArray addObject:[defaults objectForKey:@"link"]]; // add existing objects to array
+        
+        // check if selected article is already in array
+        for (NSString *article in tempArray){
+            if (article == self.detailItem[@"link"]) { // article already saved
+                break;
+            }
+            // if article is not found
+            [tempArray addObject:self.detailItem[@"link"]]; // add new article
+            [defaults setObject:tempArray forKey:@"link"]; // save updated array to defaults
+        }
+    } else {
+        [defaults setObject:self.detailItem[@"link"] forKey:@"link"]; // initialize with first input
+    }
+    
     [defaults synchronize];
+    
+    NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
 /*    // Save relevant article information to NSUserDefaults (dictionary)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // where should this be initialized?
