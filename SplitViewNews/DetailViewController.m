@@ -8,7 +8,6 @@
 
 #import "DetailViewController.h"
 #import "BookmarkViewController.h"
-#import "BookmarkToWebViewDelegate.h"
 #import <Social/Social.h>
 
 @interface DetailViewController () <BookmarkToWebViewDelegate>

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BookmarkToWebViewDelegate.h"
+
+@protocol BookmarkToWebViewDelegate <NSObject>
+
+- (void)bookmark:(id)sender sendsURL:(NSURL*)url;
+
+@end
 
 @interface BookmarkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

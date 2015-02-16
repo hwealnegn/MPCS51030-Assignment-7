@@ -70,8 +70,11 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Clicked cell:%ld", (long)indexPath.row);
+    [self.delegate bookmark:self sendsURL:[NSURL URLWithString:[self.favoriteLink objectAtIndex:indexPath.row]]];
+    NSLog(@"Go to link: %@", [self.favoriteLink objectAtIndex:indexPath.row]);
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -97,6 +100,7 @@
     }
 }
 
+// Reference: http://behindtechlines.com/2012/06/enabling-configuring-uitableview-edit-mode/
 - (IBAction)editBookmarks:(id)sender {
     if ([self.tableView isEditing]) {
         [self.tableView setEditing:NO animated:YES];

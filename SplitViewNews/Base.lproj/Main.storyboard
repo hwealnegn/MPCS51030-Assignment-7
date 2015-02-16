@@ -82,7 +82,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="W7r-Gm-j7T">
                             <connections>
-                                <segue destination="LKt-Jw-30E" kind="popoverPresentation" identifier="" popoverAnchorBarButtonItem="W7r-Gm-j7T" id="FzY-PZ-nTE">
+                                <segue destination="LKt-Jw-30E" kind="popoverPresentation" identifier="popoverSegue" popoverAnchorBarButtonItem="W7r-Gm-j7T" id="FzY-PZ-nTE">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
