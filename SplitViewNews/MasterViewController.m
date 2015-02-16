@@ -21,7 +21,26 @@
 
 - (void)refreshTable {
     NSLog(@"Refreshing");
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    
+    [[SharedNetworking sharedNetworking] getFeedForURL:@"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss"
+                                               success:^(NSDictionary *dictionary, NSError *error) {
+                                                   self.objects = dictionary[@"responseData"][@"feed"][@"entries"];
+                                                   [self.tableView reloadData];
+                                                   
+                                                   // Indicate network activity
+                                                   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                                                   
+                                               } failure:^{
+                                                   NSLog(@"Problem with data");
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to connect to network." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                       [alert show];
+                                                   });
+                                               }];
+    
+    
     [self.refreshControl endRefreshing];
 }
 
