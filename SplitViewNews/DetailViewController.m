@@ -43,6 +43,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+    self.bookmarkTitles = [[NSMutableArray alloc] init]; // initialize title array
+    self.bookmarkLinks = [[NSMutableArray alloc] init]; // initialize link array
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,48 +68,72 @@
 
 - (IBAction)favoriteArticle:(id)sender {
     NSLog(@"Favorited article!");
-
+    
     // Save relevant article information to NSUserDefaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    NSLog(@"There are %lu objects in bookmarks", (unsigned long)[self.bookmarkTitles count]);
+    
     // Save article titles
     if ([defaults objectForKey:@"title"] != nil) {
-        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        //NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[defaults objectForKey:@"title"]]; // create temp mutable array
-        [tempArray addObject:[defaults objectForKey:@"title"]]; // add existing objects to array
+        NSLog(@"There's something");
+        
+        NSInteger exists = 0;
+        
+        [self.bookmarkTitles addObjectsFromArray:[defaults objectForKey:@"title"]];
         
         // check if selected article is already in array
-        for (NSString *article in tempArray){
-            if (article == self.detailItem[@"title"]) { // article already saved
+        for (NSString *article in self.bookmarkTitles){
+            if ([article isEqualToString:self.detailItem[@"title"]]) { // article already saved
+                exists = 1;
                 break;
             }
-            // if article is not found
-            [tempArray addObject:self.detailItem[@"title"]]; // add new article
-            [defaults setObject:tempArray forKey:@"title"]; // save updated array to defaults
         }
+        
+        // if article is not found
+        if (exists == 0) {
+            [self.bookmarkTitles addObject:self.detailItem[@"title"]]; // add new article
+            [defaults setObject:self.bookmarkTitles forKey:@"title"]; // save updated array to defaults
+        }
+
     } else {
-        //[defaults arrayForKey:@"title"];
-        //NSMutableArray *tempArray = [[NSMutableArray alloc] init]; // create temp mutable array
-        //[tempArray addObject:self.detailItem[@"title"]]; // add existing objects to array
-        [defaults setObject:self.detailItem[@"title"] forKey:@"title"]; // initialize with first input
+        NSLog(@"Initialize title array in NSUserDefaults");
+        
+        [self.bookmarkTitles addObject:self.detailItem[@"title"]]; // add article to array
+        
+        [defaults setObject:self.bookmarkTitles forKey:@"title"]; // save array in defaults
     }
+    
+    NSLog(@"There are %lu objects in bookmarks", (unsigned long)[self.bookmarkTitles count]);
     
     // Save article links
     if ([defaults objectForKey:@"link"] != nil) {
-        NSMutableArray *tempArray = [[NSMutableArray alloc] init]; // create temp mutable array
-        [tempArray addObject:[defaults objectForKey:@"link"]]; // add existing objects to array
+        NSLog(@"There's something");
+        
+        NSInteger exists = 0;
+        
+        [self.bookmarkLinks addObjectsFromArray:[defaults objectForKey:@"link"]];
         
         // check if selected article is already in array
-        for (NSString *article in tempArray){
-            if (article == self.detailItem[@"link"]) { // article already saved
+        for (NSString *article in self.bookmarkLinks){
+            if ([article isEqualToString:self.detailItem[@"link"]]) { // article already saved
+                exists = 1;
                 break;
             }
-            // if article is not found
-            [tempArray addObject:self.detailItem[@"link"]]; // add new article
-            [defaults setObject:tempArray forKey:@"link"]; // save updated array to defaults
         }
+        
+        // if article is not found
+        if (exists == 0) {
+            [self.bookmarkLinks addObject:self.detailItem[@"link"]]; // add new article
+            [defaults setObject:self.bookmarkLinks forKey:@"link"]; // save updated array to defaults
+        }
+        
     } else {
-        [defaults setObject:self.detailItem[@"link"] forKey:@"link"]; // initialize with first input
+        NSLog(@"Initialize link array in NSUserDefaults");
+        
+        [self.bookmarkLinks addObject:self.detailItem[@"link"]]; // add article to array
+        
+        [defaults setObject:self.bookmarkLinks forKey:@"link"]; // save array in defaults
     }
     
     [defaults synchronize];

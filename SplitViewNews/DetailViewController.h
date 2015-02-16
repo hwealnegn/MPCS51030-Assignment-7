@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UIWebView *articleWebView;
 
+@property (strong, nonatomic) NSMutableArray *bookmarkTitles;
+@property (strong, nonatomic) NSMutableArray *bookmarkLinks;
+
 - (IBAction)favoriteArticle:(id)sender;
 - (IBAction)tweetArticle:(id)sender;
 
