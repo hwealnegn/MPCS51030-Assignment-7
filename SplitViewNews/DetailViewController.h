@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Social/Social.h>
 
 @interface DetailViewController : UIViewController
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *articleWebView;
 
 - (IBAction)favoriteArticle:(id)sender;
+- (IBAction)tweetArticle:(id)sender;
 
 
 @end

@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import "BookmarkViewController.h"
 #import "BookmarkToWebViewDelegate.h"
+#import <Social/Social.h>
 
 @interface DetailViewController () <BookmarkToWebViewDelegate>
 
@@ -111,5 +112,20 @@
     [defaults synchronize];
     
     NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+}
+
+// Reference: http://www.appcoda.com/ios-programming-101-integrate-twitter-and-facebook-sharing-in-ios-6/
+- (IBAction)tweetArticle:(id)sender {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) { // check if Twitter service is accessible
+        SLComposeViewController *tweet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [tweet setInitialText:@"Must read!"];
+        [self presentViewController:tweet animated:YES completion:nil];
+        
+        NSLog(@"Tweet!");
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Tweet" message:@"You cannot send a tweet right now. Sorry!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        NSLog(@"Cannot tweet!");
+    }
 }
 @end
