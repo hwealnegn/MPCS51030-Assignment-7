@@ -49,8 +49,6 @@
     //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-    [self isNetworkAvailable]; // doesn't work
-    
     [[SharedNetworking sharedNetworking] getFeedForURL:@"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss"
                                                success:^(NSDictionary *dictionary, NSError *error) {
                                                    self.objects = dictionary[@"responseData"][@"feed"][@"entries"];
@@ -61,19 +59,12 @@
                                                    
                                                } failure:^{
                                                        NSLog(@"Problem with data");
+                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to connect to network." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                            [alert show];
+                                                        });
                                                }];
-}
-
-- (BOOL)isNetworkAvailable {
-    if (NSURLErrorDomain!=nil) {
-        return YES;
-    } else {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to connect to network." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        return NO;
-    }
 }
 
 - (void)didReceiveMemoryWarning {
