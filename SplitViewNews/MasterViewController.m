@@ -21,7 +21,6 @@
 
 - (void)refreshTable {
     NSLog(@"Refreshing");
-    //[self.tableView reloadData];
     
     [[SharedNetworking sharedNetworking] getFeedForURL:@"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss"
                                                success:^(NSDictionary *dictionary, NSError *error) {
@@ -64,8 +63,6 @@
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     [[SharedNetworking sharedNetworking] getFeedForURL:@"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss"
@@ -110,9 +107,7 @@
         
         NSDictionary *link = [self.objects objectAtIndex:indexPath.row];
         
-        //NSDate *object = self.objects[indexPath.row];
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-        //[controller setDetailItem:object];
         [controller setDetailItem:link];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;

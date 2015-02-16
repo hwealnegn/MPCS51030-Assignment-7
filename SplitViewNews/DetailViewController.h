@@ -11,7 +11,6 @@
 
 @interface DetailViewController : UIViewController
 
-//@property (strong, nonatomic) id detailItem;
 @property (strong, nonatomic) NSDictionary *detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UIWebView *articleWebView;
