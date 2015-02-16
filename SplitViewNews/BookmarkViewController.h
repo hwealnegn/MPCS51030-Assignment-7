@@ -14,5 +14,6 @@
 @property (weak, nonatomic) id<BookmarkToWebViewDelegate> delegate;
 
 @property (strong, nonatomic) NSMutableArray *favoriteTitle;
+@property (strong, nonatomic) NSMutableArray *favoriteLink;
 
 @end

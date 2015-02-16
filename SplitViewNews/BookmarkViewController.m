@@ -17,6 +17,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.favoriteTitle = [[NSMutableArray alloc] init]; // initialize title array
+    self.favoriteLink = [[NSMutableArray alloc] init]; // initialize link array
+    
+    if ([defaults objectForKey:@"title"] != nil) {
+        [self.favoriteTitle addObjectsFromArray:[defaults objectForKey:@"title"]]; // add existing objects to array
+    }
+    
+    if ([defaults objectForKey:@"link"] != nil) {
+        [self.favoriteLink addObjectsFromArray:[defaults objectForKey:@"link"]]; // add existing objects to array
+    }
+    
+    NSLog(@"There should be %lu cells", (unsigned long)[self.favoriteTitle count]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,15 +56,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    /*if ([defaults objectForKey:@"title"] != nil) {
-        NSMutableArray *tempArray = [[NSMutableArray alloc] init]; // create temp mutable array
-        [tempArray addObject:[defaults objectForKey:@"title"]]; // add existing objects to array
-        [defaults objectForKey:@"title"]; // copy array to BVC
-    }*/
-    return [[defaults objectForKey:@"title"] count]; // copy array to BVC
-    //return [self.favoriteTitle count];
+    return [self.favoriteTitle count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
