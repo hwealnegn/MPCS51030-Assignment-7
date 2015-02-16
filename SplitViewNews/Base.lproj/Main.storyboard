@@ -137,7 +137,11 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="GoZ-iy-24b"/>
-                                    <barButtonItem title="Edit" id="lwi-Ks-uzt"/>
+                                    <barButtonItem title="Edit" id="lwi-Ks-uzt">
+                                        <connections>
+                                            <action selector="editBookmarks:" destination="LKt-Jw-30E" id="XVf-b6-bgg"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="5mh-0Y-kVj"/>
                                 </items>
                             </toolbar>
@@ -155,6 +159,10 @@
                         </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="500" height="500"/>
+                    <connections>
+                        <outlet property="editLabel" destination="lwi-Ks-uzt" id="jWo-OP-y9b"/>
+                        <outlet property="tableView" destination="FNP-TU-QQj" id="VyQ-t1-9UN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJk-vp-alQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

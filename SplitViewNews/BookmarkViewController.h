@@ -16,4 +16,9 @@
 @property (strong, nonatomic) NSMutableArray *favoriteTitle;
 @property (strong, nonatomic) NSMutableArray *favoriteLink;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)editBookmarks:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editLabel;
+
 @end

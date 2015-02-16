@@ -81,11 +81,29 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.favoriteTitle removeObjectAtIndex:indexPath.row]; // also need to remove from NSUserDefaults
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        [self.favoriteTitle removeObjectAtIndex:indexPath.row];
+        [defaults setObject:self.favoriteTitle forKey:@"title"]; // update defaults
+        
+        [self.favoriteLink removeObjectAtIndex:indexPath.row];
+        [defaults setObject:self.favoriteLink forKey:@"link"]; // update defaults
+        
+        [defaults synchronize];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
 
+- (IBAction)editBookmarks:(id)sender {
+    if ([self.tableView isEditing]) {
+        [self.tableView setEditing:NO animated:YES];
+        self.editLabel.title = @"Edit";
+    } else {
+        self.editLabel.title = @"Done";
+        [self.tableView setEditing:YES animated:YES];
+    }
+}
 @end
