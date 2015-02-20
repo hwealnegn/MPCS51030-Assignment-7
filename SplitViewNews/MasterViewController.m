@@ -163,4 +163,16 @@
     }
 }
 
+- (void)setPreferenceDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES" forKey:@"night_view_preference"]; // defaults YES
+    [defaults registerDefaults:appDefaults];
+    
+    NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+}
+
+/*- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+ [self setPreferenceDefaults];
+ }*/
+
 @end

@@ -46,6 +46,15 @@
     self.bookmarkLinks = [[NSMutableArray alloc] init]; // initialize link array
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // Splash screen effect
+    /*UIViewController *vc = [[UIViewController alloc] init];
+    vc.view.backgroundColor = [UIColor greenColor];
+    [self presentViewController:vc animated:NO completion:^{
+        NSLog(@"Splash screen is showing");
+    }];*/
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -153,4 +162,5 @@
         NSLog(@"Cannot tweet!");
     }
 }
+
 @end

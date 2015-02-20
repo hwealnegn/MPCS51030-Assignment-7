@@ -21,6 +21,5 @@
 - (IBAction)favoriteArticle:(id)sender;
 - (IBAction)tweetArticle:(id)sender;
 
-
 @end
 
