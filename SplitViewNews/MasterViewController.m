@@ -146,6 +146,20 @@
     
     cell.articleSnippet.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"contentSnippet"];
     
+    // Configure cell appearance for night view
+    [self setPreferenceDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    BOOL enabled = [defaults boolForKey:@"night_view_preference"];
+    if (enabled) {
+        // set night view preferences
+        self.tableView.backgroundColor = [UIColor blackColor];
+        cell.backgroundColor = [UIColor blackColor];
+        cell.articleTitle.textColor = [UIColor whiteColor];
+        cell.publishDate.textColor = [UIColor whiteColor];
+        cell.articleSnippet.textColor = [UIColor whiteColor];
+    }
+    
     return cell;
 }
 
@@ -172,7 +186,10 @@
 }
 
 /*- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
- [self setPreferenceDefaults];
+    [self setPreferenceDefaults];
+    
+ 
+    }
  }*/
 
 @end
