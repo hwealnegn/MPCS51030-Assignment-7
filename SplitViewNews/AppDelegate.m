@@ -22,6 +22,13 @@
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
+    
+    // Customize navigation bar appearance
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:1.0 green:0.5 blue:0.5 alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,
+                                                          [UIFont fontWithName:@"Helvetica" size:25], NSFontAttributeName, nil]];
+    
     return YES;
 }
 
