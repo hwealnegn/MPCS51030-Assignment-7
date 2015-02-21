@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import "BookmarkViewController.h"
 #import "MasterViewController.h"
+#import "Favorite.h"
 #import <Social/Social.h>
 
 @interface DetailViewController () <BookmarkToWebViewDelegate>
@@ -43,11 +44,8 @@
     [defaults synchronize]; // doesn't work???
     
     // Display star if article is in favorites
-    // Note: need to do this for when clicking from bookmarks
     if ([defaults objectForKey:@"title"] != nil) {
         NSLog(@"There are articles saved in favorites");
-        
-        NSLog(@"Size of array: %lu", (unsigned long)[[defaults objectForKey:@"title"] count]);
         
         // Check if selected article is already in array
         NSLog(@"***THIS ARTICLE: %@", self.detailItem[@"title"]);
@@ -201,7 +199,25 @@
     
     [defaults synchronize];
     
-//    NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    // Create Favorite object and store to disk (NSCoding)
+    Favorite *favoriteArticle = [[Favorite alloc] init];
+    favoriteArticle.title = [NSArray arrayWithArray:self.bookmarkTitles];
+    favoriteArticle.link = [NSArray arrayWithArray:self.bookmarkLinks];
+    
+    // File path
+    NSError* err = nil;
+    NSURL *docs = [[NSFileManager new] URLForDirectory:NSDocumentationDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
+    
+    // Write
+    NSData* favoriteData = [NSKeyedArchiver archivedDataWithRootObject:favoriteArticle];
+    NSURL* file = [docs URLByAppendingPathComponent:@"favorites.plist"];
+    [favoriteData writeToURL:file atomically:NO];
+    NSLog(@"DOCS: %@",file);
+    
+    // Read
+    NSData* data = [[NSData alloc] initWithContentsOfURL:file];
+    Favorite *favoriteRetrieved = (Favorite*)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"Retrieved: %@ %@", favoriteRetrieved.title[0], favoriteRetrieved.link[0]);
 }
 
 // Reference: http://www.appcoda.com/ios-programming-101-integrate-twitter-and-facebook-sharing-in-ios-6/

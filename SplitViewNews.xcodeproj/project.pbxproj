@@ -20,6 +20,7 @@
 		3B025A0C1A8EC6FA009C6EA4 /* SharedNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B025A0B1A8EC6FA009C6EA4 /* SharedNetworking.m */; };
 		3B3812C01A918F2500D06CC9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B3812BF1A918F2500D06CC9 /* Social.framework */; };
 		3B7570291A97F4E300221E66 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B7570281A97F4E300221E66 /* Settings.bundle */; };
+		3BF46E1E1A993CC60059136E /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF46E1D1A993CC60059136E /* Favorite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		3B025A0B1A8EC6FA009C6EA4 /* SharedNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedNetworking.m; sourceTree = "<group>"; };
 		3B3812BF1A918F2500D06CC9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3B7570281A97F4E300221E66 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		3BF46E1C1A993CC60059136E /* Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorite.h; sourceTree = "<group>"; };
+		3BF46E1D1A993CC60059136E /* Favorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favorite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 				3B025A041A8EA574009C6EA4 /* NewsTableViewCell.m */,
 				3B0259E41A8EA2A3009C6EA4 /* DetailViewController.h */,
 				3B0259E51A8EA2A3009C6EA4 /* DetailViewController.m */,
+				3BF46E1C1A993CC60059136E /* Favorite.h */,
+				3BF46E1D1A993CC60059136E /* Favorite.m */,
 				3B7570281A97F4E300221E66 /* Settings.bundle */,
 				3B025A0A1A8EC6FA009C6EA4 /* SharedNetworking.h */,
 				3B025A0B1A8EC6FA009C6EA4 /* SharedNetworking.m */,
@@ -252,6 +257,7 @@
 				3B025A0C1A8EC6FA009C6EA4 /* SharedNetworking.m in Sources */,
 				3B025A091A8EC2CE009C6EA4 /* BookmarkViewController.m in Sources */,
 				3B0259E31A8EA2A3009C6EA4 /* MasterViewController.m in Sources */,
+				3BF46E1E1A993CC60059136E /* Favorite.m in Sources */,
 				3B0259DD1A8EA2A3009C6EA4 /* main.m in Sources */,
 				3B0259E61A8EA2A3009C6EA4 /* DetailViewController.m in Sources */,
 			);
