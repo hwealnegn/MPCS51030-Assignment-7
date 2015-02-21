@@ -10,7 +10,7 @@
 			<key>Key</key>
 			<string>night_view_preference</string>
 			<key>Title</key>
-			<string>Night View</string>
+			<string>Night Reading Mode</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>

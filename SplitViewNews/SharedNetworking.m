@@ -31,18 +31,24 @@
     [[session dataTaskWithURL:[NSURL URLWithString:url]
             completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
                 
-                NSLog(@"Data:%@",data);
-                NSLog(@"Response:%@",response);
-                NSLog(@"Error:%@",error);
+//                NSLog(@"Data:%@",data);
+//                NSLog(@"Response:%@",response);
+//                NSLog(@"Error:%@",error);
                 
                 NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
                 if (httpResp.statusCode == 200) {
                     NSError *jsonError;
                     
                     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-                    NSLog(@"DownloadedData:%@",dictionary);
+//                    NSLog(@"DownloadedData:%@",dictionary);
                     
-                    successCompletion(dictionary,nil);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        successCompletion(dictionary,nil);
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:self]; // post notification
+
+                    });
+                    
                 } else {
                     NSLog(@"Fail Not 200:");
                     dispatch_async(dispatch_get_main_queue(), ^{

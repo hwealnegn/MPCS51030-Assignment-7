@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "BookmarkViewController.h"
+#import "MasterViewController.h"
 #import <Social/Social.h>
 
 @interface DetailViewController () <BookmarkToWebViewDelegate>
@@ -44,6 +45,17 @@
     
     self.bookmarkTitles = [[NSMutableArray alloc] init]; // initialize title array
     self.bookmarkLinks = [[NSMutableArray alloc] init]; // initialize link array
+    
+    // Check for notification from MasterViewController
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissSplashScreen:) name:@"dataLoaded" object:nil];
+}
+
+- (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"dataLoaded" object:nil]; // remove notification
+}
+
+- (void)dismissSplashScreen:(NSNotification *)note {
+    NSLog(@"Notification received");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -53,6 +65,9 @@
     [self presentViewController:vc animated:NO completion:^{
         NSLog(@"Splash screen is showing");
     }];*/
+    
+    // Check for notification from MasterViewController
+    //[[NSNotificationCenter defaultCenter] addObserver:vc selector:@selector(dismissViewControllerAnimated:completion:) name:@"dataLoaded" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,7 +160,7 @@
     
     [defaults synchronize];
     
-    NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+//    NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 }
 
 // Reference: http://www.appcoda.com/ios-programming-101-integrate-twitter-and-facebook-sharing-in-ios-6/

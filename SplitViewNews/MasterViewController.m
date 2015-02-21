@@ -75,12 +75,12 @@
                                                    
                                                } failure:^{
                                                        NSLog(@"Problem with data");
-                                                        dispatch_async(dispatch_get_main_queue(), ^{
                                                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to connect to network." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                             [alert show];
-                                                        });
                                                }];
+    
+    // Notification to DetailViewController regarding data load
 }
 
 - (void)didReceiveMemoryWarning {
@@ -182,14 +182,7 @@
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES" forKey:@"night_view_preference"]; // defaults YES
     [defaults registerDefaults:appDefaults];
     
-    NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+//    NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 }
-
-/*- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self setPreferenceDefaults];
-    
- 
-    }
- }*/
 
 @end
