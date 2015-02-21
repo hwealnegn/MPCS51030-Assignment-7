@@ -63,6 +63,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dZE-yg-5tf"/>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-tJ-M9I">
+                                <rect key="frame" x="16" y="72" width="50" height="50"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -91,6 +94,7 @@
                     <connections>
                         <outlet property="articleWebView" destination="enB-Ou-cl2" id="eiq-HW-9xS"/>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="starImage" destination="ffj-tJ-M9I" id="zgK-h8-Iic"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -272,6 +276,9 @@
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star" width="512" height="488"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TCg-k4-3FC"/>
     </inferredMetricsTieBreakers>

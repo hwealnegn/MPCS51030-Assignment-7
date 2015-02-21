@@ -36,6 +36,35 @@
         NSURL *url = [NSURL URLWithString:self.detailItem[@"link"]];
         [self.articleWebView loadRequest:[NSURLRequest requestWithURL:url]];
     }
+    
+    // Save current article in NSUserDefaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.detailItem[@"link"] forKey:@"lastArticleViewed"]; // save current article
+    [defaults synchronize]; // doesn't work???
+    
+    // Display star if article is in favorites
+    // Note: need to do this for when clicking from bookmarks
+    if ([defaults objectForKey:@"title"] != nil) {
+        NSLog(@"There are articles saved in favorites");
+        
+        NSLog(@"Size of array: %lu", (unsigned long)[[defaults objectForKey:@"title"] count]);
+        
+        // Check if selected article is already in array
+        NSLog(@"***THIS ARTICLE: %@", self.detailItem[@"title"]);
+        for (NSString *article in [defaults objectForKey:@"title"]){
+            NSLog(@"***Article: %@", article);
+            if ([article isEqualToString:self.detailItem[@"title"]]) { // article already saved
+                NSLog(@"This article is in favorites");
+                [self.starImage setHidden:NO];
+                break;
+            }
+            NSLog(@"This article is NOT in favorites");
+            [self.starImage setHidden:YES];
+        }
+    }
+    
+    
+    //NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 }
 
 - (void)viewDidLoad {
@@ -46,8 +75,18 @@
     self.bookmarkTitles = [[NSMutableArray alloc] init]; // initialize title array
     self.bookmarkLinks = [[NSMutableArray alloc] init]; // initialize link array
     
-    // Check for notification from MasterViewController
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissSplashScreen:) name:@"dataLoaded" object:nil];
+    // Set last article viewed as initial article displayed
+    // NOTE: NOT SAVING TO DEFAULTS
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //[self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[defaults stringForKey:@"lastArticleViewed"]]]];
+    
+    NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    
+    NSString *lastArticle = [defaults objectForKey:@"lastArticleViewed"];
+    NSLog(@"Last article: %@", lastArticle);
+    [defaults synchronize];
+    
+    //[self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
 }
 
 - (void)viewDidUnload {
