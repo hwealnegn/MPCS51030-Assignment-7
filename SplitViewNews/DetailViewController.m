@@ -125,10 +125,12 @@
 - (void)bookmark:(id)sender sendsURL:(NSURL *)url {
     NSLog(@"Sending message from bookmarks");
     [self.articleWebView loadRequest:[NSURLRequest requestWithURL:url]];
+    [self.starImage setHidden:NO]; // display star
 }
 
 - (IBAction)favoriteArticle:(id)sender {
     NSLog(@"Favorited article!");
+    [self.starImage setHidden:NO]; // display star
     
     // Save relevant article information to NSUserDefaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

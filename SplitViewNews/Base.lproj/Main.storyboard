@@ -49,13 +49,13 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ywu-xZ-WGX"/>
-                                    <barButtonItem title="Favorite This Article" id="Rrm-uZ-t3R">
+                                    <barButtonItem title="Favorite" id="Rrm-uZ-t3R">
                                         <connections>
                                             <action selector="favoriteArticle:" destination="JEX-9P-axG" id="H72-Y6-0V0"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="z7w-hc-lwO"/>
-                                    <barButtonItem title="Tweet This Article" id="yUC-PM-l73">
+                                    <barButtonItem title="Tweet" id="yUC-PM-l73">
                                         <connections>
                                             <action selector="tweetArticle:" destination="JEX-9P-axG" id="Fa1-Ic-EgJ"/>
                                         </connections>
@@ -63,23 +63,56 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dZE-yg-5tf"/>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-tJ-M9I">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-tJ-M9I">
                                 <rect key="frame" x="16" y="72" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="2Yh-68-14e"/>
+                                    <constraint firstAttribute="height" constant="50" id="xmb-xh-MBA"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ffj-tJ-M9I" secondAttribute="trailing" id="6s1-Pk-0xp"/>
+                            <constraint firstItem="ffj-tJ-M9I" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="7Cu-Qa-qbu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vu2-aP-07O" secondAttribute="trailing" constant="-16" id="9dt-sB-fJ1"/>
+                            <constraint firstItem="ffj-tJ-M9I" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="Dkf-wB-0Ib"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="enB-Ou-cl2" secondAttribute="bottom" id="Gra-Gj-Xed"/>
                             <constraint firstAttribute="trailingMargin" secondItem="enB-Ou-cl2" secondAttribute="trailing" constant="-16" id="N4a-5c-fSY"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
+                            <constraint firstItem="ffj-tJ-M9I" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="V7G-II-UDi"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="vu2-aP-07O" secondAttribute="bottom" id="cMf-iR-1ah"/>
                             <constraint firstItem="enB-Ou-cl2" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="ds6-AQ-0N0"/>
                             <constraint firstItem="enB-Ou-cl2" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="f2l-bz-H20"/>
+                            <constraint firstAttribute="centerX" secondItem="ffj-tJ-M9I" secondAttribute="centerX" id="hwq-E0-OD5"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
+                            <constraint firstAttribute="centerX" secondItem="ffj-tJ-M9I" secondAttribute="centerX" id="mlu-vk-gc6"/>
                             <constraint firstItem="vu2-aP-07O" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="rsu-fu-L1d"/>
                             <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6s1-Pk-0xp"/>
+                                <exclude reference="Dkf-wB-0Ib"/>
+                                <exclude reference="hwq-E0-OD5"/>
+                                <exclude reference="mlu-vk-gc6"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="V7G-II-UDi"/>
+                                <include reference="hwq-E0-OD5"/>
+                                <include reference="mlu-vk-gc6"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="6s1-Pk-0xp"/>
+                                <exclude reference="7Cu-Qa-qbu"/>
+                                <include reference="Dkf-wB-0Ib"/>
+                                <exclude reference="V7G-II-UDi"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Article" id="mOI-FS-AaM">
