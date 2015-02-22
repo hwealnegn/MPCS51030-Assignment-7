@@ -68,6 +68,25 @@
                                     <constraint firstAttribute="height" constant="50" id="xmb-xh-MBA"/>
                                 </constraints>
                             </imageView>
+                            <view alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ks9-oQ-bgb">
+                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ggy-cW-fn6">
+                                        <rect key="frame" x="40" y="25" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61h-hG-qFr">
+                                        <rect key="frame" x="10" y="60" width="80" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="UTq-YT-9we"/>
+                                    <constraint firstAttribute="height" constant="100" id="Zup-5g-4aB"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -76,6 +95,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="vu2-aP-07O" secondAttribute="trailing" constant="-16" id="9dt-sB-fJ1"/>
                             <constraint firstItem="ffj-tJ-M9I" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="Dkf-wB-0Ib"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="enB-Ou-cl2" secondAttribute="bottom" id="Gra-Gj-Xed"/>
+                            <constraint firstAttribute="centerX" secondItem="Ks9-oQ-bgb" secondAttribute="centerX" id="IEz-ca-FrP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="enB-Ou-cl2" secondAttribute="trailing" constant="-16" id="N4a-5c-fSY"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
                             <constraint firstItem="ffj-tJ-M9I" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="V7G-II-UDi"/>
@@ -87,6 +107,7 @@
                             <constraint firstAttribute="centerX" secondItem="ffj-tJ-M9I" secondAttribute="centerX" id="mlu-vk-gc6"/>
                             <constraint firstItem="vu2-aP-07O" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="rsu-fu-L1d"/>
                             <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
+                            <constraint firstAttribute="centerY" secondItem="Ks9-oQ-bgb" secondAttribute="centerY" id="ycR-lN-Y68"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -125,6 +146,8 @@
                     <connections>
                         <outlet property="articleWebView" destination="enB-Ou-cl2" id="eiq-HW-9xS"/>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="loadingActivity" destination="ggy-cW-fn6" id="zSc-jL-9iZ"/>
+                        <outlet property="loadingView" destination="Ks9-oQ-bgb" id="MxC-uU-bZH"/>
                         <outlet property="starImage" destination="ffj-tJ-M9I" id="zgK-h8-Iic"/>
                     </connections>
                 </viewController>

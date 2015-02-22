@@ -10,6 +10,7 @@
 #import "BookmarkViewController.h"
 #import "MasterViewController.h"
 #import "Favorite.h"
+#import <QuartzCore/QuartzCore.h>
 #import <Social/Social.h>
 
 @interface DetailViewController () <BookmarkToWebViewDelegate>
@@ -69,6 +70,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+    // Loading view (displayed when web view is loading)
+    self.articleWebView.delegate = self;
+    self.loadingView.layer.cornerRadius = 5;
+    self.loadingView.layer.masksToBounds = YES;
+    [self.loadingActivity startAnimating];
     
     self.bookmarkTitles = [[NSMutableArray alloc] init]; // initialize title array
     self.bookmarkLinks = [[NSMutableArray alloc] init]; // initialize link array
@@ -233,6 +240,10 @@
         [alert show];
         NSLog(@"Cannot tweet!");
     }
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.loadingView setHidden:YES];
 }
 
 @end

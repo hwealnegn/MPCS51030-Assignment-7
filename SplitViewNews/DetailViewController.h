@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <UIWebViewDelegate>
 
 @property (strong, nonatomic) NSDictionary *detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UIWebView *articleWebView;
 @property (weak, nonatomic) IBOutlet UIImageView *starImage;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 
 @property (strong, nonatomic) NSMutableArray *bookmarkTitles;
 @property (strong, nonatomic) NSMutableArray *bookmarkLinks;
