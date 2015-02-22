@@ -65,6 +65,15 @@
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
+    // Auto-resizing table view cells
+    //self.tableView.estimatedRowHeight = 150.0;
+    //self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIContentSizeCategoryDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        NSLog(@"Size changed; need to reload table");
+        [self.tableView reloadData];
+    }];
+    
     [[SharedNetworking sharedNetworking] getFeedForURL:@"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss"
                                                success:^(NSDictionary *dictionary, NSError *error) {
                                                    self.objects = dictionary[@"responseData"][@"feed"][@"entries"];
@@ -79,8 +88,6 @@
                                                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to connect to network." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                                             [alert show];
                                                }];
-    
-    // Notification to DetailViewController regarding data load
 }
 
 - (void)didReceiveMemoryWarning {
@@ -159,6 +166,13 @@
         cell.publishDate.textColor = [UIColor whiteColor];
         cell.articleSnippet.textColor = [UIColor whiteColor];
     }
+    
+    // Adjust cell layout/size for dynamic type
+    //cell.articleTitle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    //cell.publishDate.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    //cell.articleSnippet.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    
+    //[cell layoutIfNeeded];
     
     return cell;
 }
