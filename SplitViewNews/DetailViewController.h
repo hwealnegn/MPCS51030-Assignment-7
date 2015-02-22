@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIView *loadingView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 
+@property (nonatomic, readonly) UIViewController *vc;
+
 @property (strong, nonatomic) NSMutableArray *bookmarkTitles;
 @property (strong, nonatomic) NSMutableArray *bookmarkLinks;
 

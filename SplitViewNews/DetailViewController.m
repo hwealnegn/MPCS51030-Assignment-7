@@ -72,6 +72,7 @@
     [self configureView];
     
     // Loading view (displayed when web view is loading)
+    // Reference for rounded corners: http://stackoverflow.com/questions/1509547/uiview-with-rounded-corners
     self.articleWebView.delegate = self;
     self.loadingView.layer.cornerRadius = 5;
     self.loadingView.layer.masksToBounds = YES;
@@ -87,11 +88,12 @@
     
     NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
-    NSString *lastArticle = [defaults objectForKey:@"lastArticleViewed"];
+    NSString *lastArticle = [defaults stringForKey:@"lastArticleViewed"];
     NSLog(@"Last article: %@", lastArticle);
     [defaults synchronize];
     
     //[self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
+
 }
 
 - (void)viewDidUnload {
@@ -99,7 +101,12 @@
 }
 
 - (void)dismissSplashScreen:(NSNotification *)note {
-    NSLog(@"Notification received");
+    // Never does this
+    [self.vc dismissViewControllerAnimated:NO completion:^{
+        NSLog(@"Splash screen dismissed");
+    }];
+
+    NSLog(@"Notification received!!");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -108,10 +115,9 @@
     vc.view.backgroundColor = [UIColor greenColor];
     [self presentViewController:vc animated:NO completion:^{
         NSLog(@"Splash screen is showing");
-    }];*/
+    }];
     
-    // Check for notification from MasterViewController
-    //[[NSNotificationCenter defaultCenter] addObserver:vc selector:@selector(dismissViewControllerAnimated:completion:) name:@"dataLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissSplashScreen:) name:@"dataLoaded" object:nil];*/
 }
 
 - (void)didReceiveMemoryWarning {
