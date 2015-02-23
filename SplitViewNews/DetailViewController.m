@@ -43,8 +43,9 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (self.detailItem[@"link"]!=nil) {
         [defaults setObject:self.detailItem[@"link"] forKey:@"lastArticleViewed"]; // save current article
+        [defaults setObject:self.detailItem[@"title"] forKey:@"lastArticleTitle"]; // and its title
     }
-    [defaults synchronize]; // doesn't work???
+    [defaults synchronize];
     
     // Display star if article is in favorites
     if ([defaults objectForKey:@"title"] != nil) {
@@ -86,6 +87,8 @@
     // Set last article viewed as initial article displayed
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[defaults stringForKey:@"lastArticleViewed"]]]];
+    
+    //[self.detailItem setObject]
     
     NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
