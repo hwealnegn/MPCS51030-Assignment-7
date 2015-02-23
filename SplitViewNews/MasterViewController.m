@@ -66,8 +66,8 @@
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     // Auto-resizing table view cells
-    //self.tableView.estimatedRowHeight = 150.0;
-    //self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 150.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIContentSizeCategoryDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSLog(@"Size changed; need to reload table");
@@ -168,11 +168,11 @@
     }
     
     // Adjust cell layout/size for dynamic type
-    //cell.articleTitle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-    //cell.publishDate.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-    //cell.articleSnippet.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    cell.articleTitle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    cell.publishDate.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    cell.articleSnippet.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     
-    //[cell layoutIfNeeded];
+    [cell layoutIfNeeded];
     
     return cell;
 }
