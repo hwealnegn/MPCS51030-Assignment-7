@@ -16,6 +16,7 @@
 @implementation AppDelegate
 
 - (void)dismissSplashScreen:(NSNotification *)note {
+    // Reference for animation: http://stackoverflow.com/questions/9115854/animating-hide-show
     [UIView transitionWithView:self.splash duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:NULL completion:NULL]; // delay dismissal
     [self.splash setHidden:YES];
     NSLog(@"Notification received!!");
