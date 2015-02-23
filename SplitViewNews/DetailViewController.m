@@ -41,7 +41,9 @@
     
     // Save current article in NSUserDefaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.detailItem[@"link"] forKey:@"lastArticleViewed"]; // save current article
+    if (self.detailItem[@"link"]!=nil) {
+        [defaults setObject:self.detailItem[@"link"] forKey:@"lastArticleViewed"]; // save current article
+    }
     [defaults synchronize]; // doesn't work???
     
     // Display star if article is in favorites
@@ -82,9 +84,8 @@
     self.bookmarkLinks = [[NSMutableArray alloc] init]; // initialize link array
     
     // Set last article viewed as initial article displayed
-    // NOTE: NOT SAVING TO DEFAULTS
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //[self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[defaults stringForKey:@"lastArticleViewed"]]]];
+    [self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[defaults stringForKey:@"lastArticleViewed"]]]];
     
     NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
