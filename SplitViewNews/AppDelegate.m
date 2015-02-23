@@ -15,6 +15,15 @@
 
 @implementation AppDelegate
 
+- (void)dismissSplashScreen:(NSNotification *)note {
+    [UIView transitionWithView:self.splash duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:NULL completion:NULL]; // delay dismissal
+    [self.splash setHidden:YES];
+    NSLog(@"Notification received!!");
+}
+
+- (void)delaySplashScreen:(NSNotification *)note {
+    [self performSelector:@selector(dismissSplashScreen:) withObject:nil afterDelay:1];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -28,6 +37,15 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,
                                                           [UIFont fontWithName:@"Helvetica" size:25], NSFontAttributeName, nil]];
+    
+    // Splash screen
+    self.splash = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.window.frame.size.width, self.window.frame.size.height)];
+    self.splash.backgroundColor = [UIColor colorWithRed:1.0 green:0.5 blue:0.5 alpha:1.0];
+    [splitViewController.view addSubview:self.splash];
+    
+    NSLog(@"Splash screen is showing");
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(delaySplashScreen:) name:@"dataLoaded" object:nil];
     
     return YES;
 }

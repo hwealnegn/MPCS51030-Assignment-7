@@ -52,11 +52,8 @@
         NSLog(@"There are articles saved in favorites");
         
         // Check if selected article is already in array
-        NSLog(@"***THIS ARTICLE: %@", self.detailItem[@"title"]);
         for (NSString *article in [defaults objectForKey:@"title"]){
-            NSLog(@"***Article: %@", article);
             if ([article isEqualToString:self.detailItem[@"title"]]) { // article already saved
-                NSLog(@"This article is in favorites");
                 [self.starImage setHidden:NO];
                 break;
             }
@@ -88,40 +85,12 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[defaults stringForKey:@"lastArticleViewed"]]]];
     
-    //[self.detailItem setObject]
-    
     NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
     NSString *lastArticle = [defaults stringForKey:@"lastArticleViewed"];
     NSLog(@"Last article: %@", lastArticle);
     [defaults synchronize];
-    
-    //[self.articleWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
 
-}
-
-- (void)viewDidUnload {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"dataLoaded" object:nil]; // remove notification
-}
-
-- (void)dismissSplashScreen:(NSNotification *)note {
-    // Never does this
-    [self.vc dismissViewControllerAnimated:NO completion:^{
-        NSLog(@"Splash screen dismissed");
-    }];
-
-    NSLog(@"Notification received!!");
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    // Splash screen effect
-    /*UIViewController *vc = [[UIViewController alloc] init];
-    vc.view.backgroundColor = [UIColor greenColor];
-    [self presentViewController:vc animated:NO completion:^{
-        NSLog(@"Splash screen is showing");
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissSplashScreen:) name:@"dataLoaded" object:nil];*/
 }
 
 - (void)didReceiveMemoryWarning {
